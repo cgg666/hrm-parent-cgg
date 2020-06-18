@@ -9,7 +9,7 @@ public class SwaggerProperties {
     private String description;
     private String name = "cuigege";
     private String url = "";
-    private String email = "cuiyi@itsource.cn";
+    private String email = "cuiyi@itsource.cuiyi";
     private String version = "1.0";
 
     public String getPackageName() {
