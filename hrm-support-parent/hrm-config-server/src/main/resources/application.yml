@@ -1,0 +1,20 @@
+server:
+  port: 6969
+spring:
+  application:
+    name: config-server
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://github.com/cgg666/hrm-config-cgg.git #配置仓库的路径
+          searchPaths: src/main/resources #从仓库中的子目录寻找配置文件
+
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/ #服务注册的地址
+  instance:
+    instance-id: config-server:6969
+    prefer-ip-address: true
