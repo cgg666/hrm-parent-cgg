@@ -1,11 +1,10 @@
-#bootstrap.yml也是springboot的配置文件
-#比application.yml先加载，项目引导的时候加载
 spring:
   cloud:
     config:
-      #uri: http://localhost:6969  #这里找的是hrm-autoconfig-server的端口
       profile: dev #环境
       name: application-zuul #名称
-      discovery: #集群配置中心
+      #集群版配置中心
+      discovery:
         service-id: config-server
         enabled: true
+#      uri: http://localhost:6969 #单机版配置中心
