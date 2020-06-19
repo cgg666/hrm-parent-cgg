@@ -25,14 +25,17 @@ public class LoginController {
             return AjaxResult.me().setSuccess(false).setMessage("密码不能为空");
         }
 
-        Employee loginUser = employeeService.getOne(new QueryWrapper<Employee>().eq("username", employee.getUsername()));
+        Employee loginUser = employeeService.getOne(new QueryWrapper<Employee>().eq("username", employee.getUsername()).eq("password",employee.getPassword()));
 
-        if (loginUser == null){
-            return AjaxResult.me().setSuccess(false).setMessage("用户名或密码错误");
+        if(loginUser == null){
+            return AjaxResult.me().setSuccess(false).setMessage("用户名或密码错误！");
         }
 
+        //登录成功的处理
         loginUser.setPassword(null);
-        return AjaxResult.me().setSuccess(true).setMessage("登陆成功").setResultObj(loginUser);
+        return AjaxResult.me().setSuccess(true).setMessage("登录成功!").setResultObj(loginUser);
+
+
 
     }
 
