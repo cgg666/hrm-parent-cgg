@@ -1,7 +1,8 @@
 package cuiyi.itsource.hrm.service;
 
-import cuiyi.itsource.hrm.domain.Tenant;
 import com.baomidou.mybatisplus.extension.service.IService;
+import cuiyi.itsource.hrm.controller.vo.RegisterVo;
+import cuiyi.itsource.hrm.domain.Tenant;
 
 /**
  * <p>
@@ -12,5 +13,5 @@ import com.baomidou.mybatisplus.extension.service.IService;
  * @since 2020-06-19
  */
 public interface ITenantService extends IService<Tenant> {
-
+    void register(RegisterVo registerVo);
 }

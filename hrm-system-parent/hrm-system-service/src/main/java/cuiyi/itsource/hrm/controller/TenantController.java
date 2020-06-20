@@ -1,5 +1,6 @@
 package cuiyi.itsource.hrm.controller;
 
+import cuiyi.itsource.hrm.controller.vo.RegisterVo;
 import cuiyi.itsource.hrm.service.ITenantService;
 import cuiyi.itsource.hrm.domain.Tenant;
 import cuiyi.itsource.hrm.query.TenantQuery;
@@ -82,5 +83,20 @@ public class TenantController {
     {
         Page<Tenant> page = tenantService.page(new Page<Tenant>(query.getPageNum(), query.getPageSize()));
         return new PageList<>(page.getTotal(),page.getRecords());
+    }
+
+    @PostMapping("/register")
+    public AjaxResult register(@RequestBody RegisterVo registerVo){
+        try {
+            registerVo.setRegisterTime(System.currentTimeMillis());
+            System.out.println(registerVo.getUsername());
+            System.out.println(registerVo.getMealId());
+            tenantService.register(registerVo);
+            return AjaxResult.me().setSuccess(true).setMessage("注册成功").setResultObj(registerVo);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return AjaxResult.me().setSuccess(false).setMessage("注册失败！"+e.getMessage());
+        }
+
     }
 }

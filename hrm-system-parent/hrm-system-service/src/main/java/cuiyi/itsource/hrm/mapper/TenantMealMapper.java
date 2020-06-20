@@ -1,7 +1,7 @@
 package cuiyi.itsource.hrm.mapper;
 
-import cuiyi.itsource.hrm.domain.TenantMeal;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import cuiyi.itsource.hrm.domain.TenantMeal;
 
 /**
  * <p>
