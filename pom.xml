@@ -13,9 +13,10 @@
         <module>hrm-basic-parent</module>
         <module>hrm-system-parent</module>
         <module>hrm-course-parent</module>
-        <module>hrm-file-interface</module>
         <module>hrm-file-parent</module>
+        <module>hrm-cache-parent</module>
     </modules>
+
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
