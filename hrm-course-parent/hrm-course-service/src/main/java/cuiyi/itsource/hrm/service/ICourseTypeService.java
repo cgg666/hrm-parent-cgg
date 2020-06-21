@@ -1,7 +1,9 @@
 package cuiyi.itsource.hrm.service;
 
-import cuiyi.itsource.hrm.domain.CourseType;
 import com.baomidou.mybatisplus.extension.service.IService;
+import cuiyi.itsource.hrm.domain.CourseType;
+
+import java.util.List;
 
 /**
  * <p>
@@ -12,5 +14,7 @@ import com.baomidou.mybatisplus.extension.service.IService;
  * @since 2020-06-18
  */
 public interface ICourseTypeService extends IService<CourseType> {
+
+    List<CourseType> loadTypeTree();
 
 }

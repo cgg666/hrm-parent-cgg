@@ -26,7 +26,6 @@
         <springboot.version>2.0.5.RELEASE</springboot.version>
         <mybatis.plus.version>3.3.1.tmp</mybatis.plus.version>
     </properties>
-
     <dependencyManagement>
         <dependencies>
             <dependency>
@@ -50,6 +49,5 @@
             </dependency>
         </dependencies>
     </dependencyManagement>
-
 
 </project>
