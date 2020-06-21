@@ -32,7 +32,7 @@
         <dependency>
             <groupId>com.alibaba</groupId>
             <artifactId>fastjson</artifactId>
-            <version>1.2.61</version>
+            <version>1.2.6</version>
         </dependency>
 
     </dependencies>
@@ -43,7 +43,7 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <configuration>
-                    <mainClass>cuiyi.itsource.hrm.CourseServiceApplication</mainClass>
+                    <mainClass>cn.itsource.hrm.CourseServiceApplication</mainClass>
                 </configuration>
                 <executions>
                     <execution>

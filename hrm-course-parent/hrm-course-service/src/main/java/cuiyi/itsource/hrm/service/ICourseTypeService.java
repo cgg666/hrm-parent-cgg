@@ -16,5 +16,4 @@ import java.util.List;
 public interface ICourseTypeService extends IService<CourseType> {
 
     List<CourseType> loadTypeTree();
-
 }
