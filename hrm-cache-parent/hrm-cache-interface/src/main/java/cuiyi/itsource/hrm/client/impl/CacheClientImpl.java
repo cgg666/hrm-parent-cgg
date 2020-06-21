@@ -2,7 +2,9 @@ package cuiyi.itsource.hrm.client.impl;
 
 import cuiyi.itsource.hrm.client.CacheClient;
 import cuiyi.itsource.hrm.util.AjaxResult;
+import org.springframework.stereotype.Component;
 
+@Component
 public class CacheClientImpl implements CacheClient{
     @Override
     public AjaxResult set(String key, String value) {

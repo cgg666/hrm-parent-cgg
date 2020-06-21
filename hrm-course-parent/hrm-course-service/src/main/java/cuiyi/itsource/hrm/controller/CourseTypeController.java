@@ -26,9 +26,9 @@ public class CourseTypeController {
     public AjaxResult save(@RequestBody CourseType courseType){
         try {
             if(courseType.getId()!=null){
-                    courseTypeService.updateById(courseType);
+                courseTypeService.updateById(courseType);
             }else{
-                    courseTypeService.save(courseType);
+                courseTypeService.save(courseType);
             }
             return AjaxResult.me();
         } catch (Exception e) {
@@ -38,14 +38,14 @@ public class CourseTypeController {
     }
 
     /**
-    * 删除对象信息
-    * @param id
-    * @return
-    */
+     * 删除对象信息
+     * @param id
+     * @return
+     */
     @RequestMapping(value="/{id}",method=RequestMethod.DELETE)
     public AjaxResult delete(@PathVariable("id") Long id){
         try {
-                courseTypeService.removeById(id);
+            courseTypeService.removeById(id);
             return AjaxResult.me();
         } catch (Exception e) {
             e.printStackTrace();
@@ -61,9 +61,9 @@ public class CourseTypeController {
 
 
     /**
-    * 查看所有信息
-    * @return
-    */
+     * 查看所有信息
+     * @return
+     */
     @RequestMapping(value = "/list",method = RequestMethod.GET)
     public List<CourseType> list(){
 
@@ -72,15 +72,24 @@ public class CourseTypeController {
 
 
     /**
-    * 分页查询数据
-    *
-    * @param query 查询对象
-    * @return PageList 分页对象
-    */
+     * 分页查询数据
+     *
+     * @param query 查询对象
+     * @return PageList 分页对象
+     */
     @RequestMapping(value = "/page",method = RequestMethod.POST)
     public PageList<CourseType> page(@RequestBody CourseTypeQuery query)
     {
         Page<CourseType> page = courseTypeService.page(new Page<CourseType>(query.getPageNum(), query.getPageSize()));
         return new PageList<>(page.getTotal(),page.getRecords());
+    }
+
+    /**
+     * 加载课程类型树的数据
+     * @return
+     */
+    @GetMapping("/loadTypeTree")
+    public List<CourseType> loadTypeTree(){
+        return courseTypeService.loadTypeTree();
     }
 }
