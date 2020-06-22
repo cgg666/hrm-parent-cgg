@@ -43,7 +43,7 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <configuration>
-                    <mainClass>cn.itsource.hrm.CourseServiceApplication</mainClass>
+                    <mainClass>cuiyi.itsource.hrm.CourseServiceApplication</mainClass>
                 </configuration>
                 <executions>
                     <execution>
