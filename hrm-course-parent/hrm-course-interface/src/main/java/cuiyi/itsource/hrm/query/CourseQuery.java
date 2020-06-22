@@ -10,4 +10,6 @@ package cuiyi.itsource.hrm.query;
  */
 public class CourseQuery extends BaseQuery {
 
+    private Integer status;
+
 }

@@ -35,6 +35,13 @@
             <version>1.2.6</version>
         </dependency>
 
+        <dependency>
+            <groupId>cuiyi.itsource</groupId>
+            <artifactId>hrm-system-interface</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+
+
     </dependencies>
 
     <build>

@@ -77,5 +77,8 @@ public class Course implements Serializable {
 
     private String pic;
 
+    @TableField(exist = false)
+    private CourseType courseType;
+
 
 }

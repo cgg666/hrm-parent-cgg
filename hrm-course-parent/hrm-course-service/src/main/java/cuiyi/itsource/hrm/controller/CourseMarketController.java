@@ -1,8 +1,8 @@
 package cuiyi.itsource.hrm.controller;
 
-import cuiyi.itsource.hrm.service.ISystemdictionaryItemService;
-import cuiyi.itsource.hrm.domain.SystemdictionaryItem;
-import cuiyi.itsource.hrm.query.SystemdictionaryItemQuery;
+import cuiyi.itsource.hrm.service.ICourseMarketService;
+import cuiyi.itsource.hrm.domain.CourseMarket;
+import cuiyi.itsource.hrm.query.CourseMarketQuery;
 import cuiyi.itsource.hrm.util.AjaxResult;
 import cuiyi.itsource.hrm.util.PageList;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
@@ -12,25 +12,23 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/systemdictionaryItem")
-public class SystemdictionaryItemController {
-    private final String COURSE_LEVEL = "courseLevel";
-
+@RequestMapping("/courseMarket")
+public class CourseMarketController {
     @Autowired
-    public ISystemdictionaryItemService systemdictionaryItemService;
+    public ICourseMarketService courseMarketService;
 
     /**
      * 保存和修改公用的
-     * @param systemdictionaryItem  传递的实体
+     * @param courseMarket  传递的实体
      * @return Ajaxresult转换结果
      */
     @RequestMapping(value="/save",method= RequestMethod.POST)
-    public AjaxResult save(@RequestBody SystemdictionaryItem systemdictionaryItem){
+    public AjaxResult save(@RequestBody CourseMarket courseMarket){
         try {
-            if(systemdictionaryItem.getId()!=null){
-                systemdictionaryItemService.updateById(systemdictionaryItem);
+            if(courseMarket.getId()!=null){
+                courseMarketService.updateById(courseMarket);
             }else{
-                systemdictionaryItemService.save(systemdictionaryItem);
+                courseMarketService.save(courseMarket);
             }
             return AjaxResult.me();
         } catch (Exception e) {
@@ -47,7 +45,7 @@ public class SystemdictionaryItemController {
     @RequestMapping(value="/{id}",method=RequestMethod.DELETE)
     public AjaxResult delete(@PathVariable("id") Long id){
         try {
-            systemdictionaryItemService.removeById(id);
+            courseMarketService.removeById(id);
             return AjaxResult.me();
         } catch (Exception e) {
             e.printStackTrace();
@@ -56,9 +54,9 @@ public class SystemdictionaryItemController {
     }
 
     @RequestMapping(value = "/{id}",method = RequestMethod.GET)
-    public SystemdictionaryItem get(@PathVariable("id")Long id)
+    public CourseMarket get(@PathVariable("id")Long id)
     {
-        return systemdictionaryItemService.getById(id);
+        return courseMarketService.getById(id);
     }
 
 
@@ -67,9 +65,9 @@ public class SystemdictionaryItemController {
      * @return
      */
     @RequestMapping(value = "/list",method = RequestMethod.GET)
-    public List<SystemdictionaryItem> list(){
+    public List<CourseMarket> list(){
 
-        return systemdictionaryItemService.list(null);
+        return courseMarketService.list(null);
     }
 
 
@@ -80,18 +78,9 @@ public class SystemdictionaryItemController {
      * @return PageList 分页对象
      */
     @RequestMapping(value = "/page",method = RequestMethod.POST)
-    public PageList<SystemdictionaryItem> page(@RequestBody SystemdictionaryItemQuery query)
+    public PageList<CourseMarket> page(@RequestBody CourseMarketQuery query)
     {
-        Page<SystemdictionaryItem> page = systemdictionaryItemService.page(new Page<SystemdictionaryItem>(query.getPageNum(), query.getPageSize()));
+        Page<CourseMarket> page = courseMarketService.page(new Page<CourseMarket>(query.getPageNum(), query.getPageSize()));
         return new PageList<>(page.getTotal(),page.getRecords());
-    }
-
-    /**
-     * 根据数据字典标识查询数据字典明细
-     * @return
-     */
-    @GetMapping("/getCourseLevel")
-    public List<SystemdictionaryItem> getCourseLevel(){
-        return systemdictionaryItemService.getBySn(COURSE_LEVEL);
     }
 }
