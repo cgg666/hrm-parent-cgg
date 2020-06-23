@@ -40,6 +40,11 @@
             <artifactId>hrm-system-interface</artifactId>
             <version>${project.version}</version>
         </dependency>
+        <dependency>
+            <groupId>cuiyi.itsource</groupId>
+            <artifactId>hrm-elasticsearch-interface</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
 
 
     </dependencies>

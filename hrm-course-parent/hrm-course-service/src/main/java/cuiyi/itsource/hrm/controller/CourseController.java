@@ -82,4 +82,29 @@ public class CourseController {
     public PageList<Course> page(@RequestBody CourseQuery query) {
         return courseService.page(query);
     }
+
+    //课程上线
+    @PostMapping("/onLine")
+    public AjaxResult onLine(@RequestBody List<Long> ids){
+
+        try {
+            courseService.onLine(ids);
+            return AjaxResult.me().setMessage("上线成功");
+        } catch (Exception e) {
+            e.printStackTrace();
+            return AjaxResult.me().setSuccess(false).setMessage("上线失败"+e.getMessage());
+        }
+    }
+    //课程下线
+    @PostMapping("/offLine")
+    public AjaxResult offLine(@RequestBody List<Long> ids){
+
+        try {
+            courseService.offLine(ids);
+            return AjaxResult.me().setMessage("下线成功");
+        } catch (Exception e) {
+            e.printStackTrace();
+            return AjaxResult.me().setSuccess(false).setMessage("下线失败"+e.getMessage());
+        }
+    }
 }
