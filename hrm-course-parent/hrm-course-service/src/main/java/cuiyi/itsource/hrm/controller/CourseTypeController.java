@@ -1,11 +1,12 @@
 package cuiyi.itsource.hrm.controller;
 
-import cuiyi.itsource.hrm.service.ICourseTypeService;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import cuiyi.itsource.hrm.controller.vo.CrumbVo;
 import cuiyi.itsource.hrm.domain.CourseType;
 import cuiyi.itsource.hrm.query.CourseTypeQuery;
+import cuiyi.itsource.hrm.service.ICourseTypeService;
 import cuiyi.itsource.hrm.util.AjaxResult;
 import cuiyi.itsource.hrm.util.PageList;
-import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -91,5 +92,10 @@ public class CourseTypeController {
     @GetMapping("/loadTypeTree")
     public List<CourseType> loadTypeTree(){
         return courseTypeService.loadTypeTree();
+    }
+
+    @GetMapping("/loadCrumbs")
+    public List<CrumbVo> loadCrumbs(@RequestParam("courseType") Long courseTypeId){
+        return courseTypeService.loadCrumbs(courseTypeId);
     }
 }

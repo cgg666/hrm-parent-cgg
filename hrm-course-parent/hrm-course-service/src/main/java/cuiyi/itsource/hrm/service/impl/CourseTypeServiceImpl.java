@@ -1,13 +1,15 @@
 package cuiyi.itsource.hrm.service.impl;
 
+import com.alibaba.fastjson.JSONObject;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import cuiyi.itsource.hrm.client.CacheClient;
+import cuiyi.itsource.hrm.controller.vo.CrumbVo;
 import cuiyi.itsource.hrm.domain.CourseType;
 import cuiyi.itsource.hrm.mapper.CourseTypeMapper;
 import cuiyi.itsource.hrm.service.ICourseTypeService;
 import cuiyi.itsource.hrm.util.AjaxResult;
-import com.alibaba.fastjson.JSONObject;
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import cuiyi.itsource.hrm.util.StrUtils;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,6 +20,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
 ;
 
 /**
@@ -81,6 +84,34 @@ public class CourseTypeServiceImpl extends ServiceImpl<CourseTypeMapper, CourseT
 
         //4返回数据
         return courseTypeList;
+    }
+
+    @Override
+    public List<CrumbVo> loadCrumbs(Long courseTypeId) {
+        List<CrumbVo> crumbVos = new ArrayList<>();
+
+        //获取path值  .1.2.3.4.
+        CourseType courseType = baseMapper.selectById(courseTypeId);
+        String path = courseType.getPath();
+        path = path.substring(1);
+        List<Long> ids = StrUtils.splitStr2LongArr(path, "\\.");
+
+        CrumbVo crumbVo = null;
+        //循环一次，就是一级
+        for (Long id : ids) {
+            crumbVo = new CrumbVo();
+            //获取当前级别的类型
+            CourseType currentType = baseMapper.selectById(id);
+            crumbVo.setCurrentType(currentType);
+            //获取当前级别的其他类型
+            Long pid = currentType.getPid();
+            List<CourseType> otherTypes = baseMapper.selectList(new QueryWrapper<CourseType>().eq("pid", pid).ne("id", id));
+            crumbVo.setOtherTypes(otherTypes);
+            crumbVos.add(crumbVo);
+        }
+
+
+        return crumbVos;
     }
 
     /**
